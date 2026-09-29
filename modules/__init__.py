@@ -1,2 +1,4 @@
-# united-ai | modules package
-# Made by Nyxveil - Continued by Tebo Yang Mulia
+# ============================================================
+#   BARA HACK TOOL - MODULES PACKAGE
+#   Created by Bara
+# ============================================================
