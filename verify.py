@@ -1,8 +1,11 @@
-# united-ai | verification module
-# Made by Nyxveil - Continued by Tebo Yang Mulia
+# ============================================================
+#   BARA HACK TOOL - VERIFICATION
+#   Created by Bara
+#   Refusal Burned 999X
+# ============================================================
 
 import requests
-from ui import ok, err, warn, info, section, C_GREEN, C_RED, C_YELLOW, C_WHITE
+from ui import info, section, C_GREEN, C_RED, C_YELLOW, C_WHITE
 
 CHECKS = {
     "IPinfo API":       "https://ipinfo.io/8.8.8.8/json",
@@ -11,6 +14,7 @@ CHECKS = {
     "TikTok Public":    "https://www.tiktok.com/@tiktok",
     "Internet":         "https://1.1.1.1",
 }
+
 
 def check(name, url):
     try:
@@ -24,11 +28,13 @@ def check(name, url):
         print(f"{C_RED}  [ERR] {C_WHITE}{name:<20} {C_RED}OFFLINE ({type(e).__name__})")
         return "OFF"
 
+
 def get_my_public_ip():
     try:
         return requests.get("https://api.ipify.org", timeout=5).text.strip()
     except Exception:
         return None
+
 
 def verify_all():
     section("VERIFIKASI SISTEM")
@@ -45,6 +51,7 @@ def verify_all():
     else:
         print(f"\n{C_YELLOW}  >>> ADA ERROR - TAPI TETAP LANJUT <<<\n")
     return all_on
+
 
 if __name__ == "__main__":
     verify_all()
