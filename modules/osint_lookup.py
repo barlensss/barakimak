@@ -1,19 +1,21 @@
-# united-ai | osint lookup
-# Made by Nyxveil - Continued by Tebo Yang Mulia
+# ============================================================
+#   BARA HACK TOOL - OSINT LOOKUP
+#   Created by Bara
+# ============================================================
 
 import requests
-from ui import (section, ok, err, info, field, end_field,
+from ui import (section, err, field, end_field,
                 prompt, press_enter, loading_bar, C_WHITE, C_YELLOW)
+
 
 def lookup_ip():
     section("OSINT - IP LOOKUP")
-    ip = prompt("Masukkan IP address")
+    ip = prompt("IP address")
     if not ip:
-        err("IP kosong.")
+        err("Kosong.")
         press_enter()
         return
-
-    loading_bar("Query IP")
+    loading_bar("Query")
     try:
         r = requests.get(
             f"http://ip-api.com/json/{ip}?fields=status,country,regionName,city,zip,lat,lon,isp,org,as,query,timezone",
@@ -25,20 +27,20 @@ def lookup_ip():
                 field(k, v)
             end_field()
         else:
-            err("Lookup gagal.")
+            err("Gagal.")
     except Exception as e:
         err(f"Error: {e}")
     press_enter()
 
+
 def lookup_phone():
-    section("OSINT - PHONE LOOKUP")
-    num = prompt("Masukkan nomor (contoh: +628123456789)")
+    section("OSINT - PHONE")
+    num = prompt("Nomor (+62812...)")
     if not num:
-        err("Nomor kosong.")
+        err("Kosong.")
         press_enter()
         return
-
-    loading_bar("Query nomor")
+    loading_bar("Query")
     try:
         import phonenumbers
         from phonenumbers import geocoder, carrier, timezone
@@ -53,15 +55,14 @@ def lookup_phone():
         err(f"Error: {e}")
     press_enter()
 
+
 def osint_menu():
     section("OSINT LOOKUP")
-    print(f"  {C_YELLOW}[1]{C_WHITE} IP Address")
-    print(f"  {C_YELLOW}[2]{C_WHITE} Nomor HP\n")
+    print(f"  {C_YELLOW}[1]{C_WHITE} IP")
+    print(f"  {C_YELLOW}[2]{C_WHITE} Phone\n")
     sub = prompt("Pilih")
-    if sub == "1":
-        lookup_ip()
-    elif sub == "2":
-        lookup_phone()
+    if sub == "1": lookup_ip()
+    elif sub == "2": lookup_phone()
     else:
-        err("Pilihan tidak valid.")
+        err("Invalid.")
         press_enter()
